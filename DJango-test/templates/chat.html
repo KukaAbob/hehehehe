@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/cs.css" id="themeStylesheet">
+    <title>Web Messenger</title>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="chat-list">
+                <div class="chat" data-chat-name="Техподдержка" id="supportChat">
+                    <img src="/static/tecsup.png" alt="Техподдержка">
+                    <span>Техподдержка</span>
+                </div>
+                <div class="chat" data-chat-name="Тестовый Чат" id="testChat">
+                    <img src="/static/test.png" alt="Тестовый Чат">
+                    <span>Тестовый Чат</span>
+                </div>
+            </div>
+        </div>
+        <div class="chat-content">
+            <div class="header">
+                <h2>Выбранный чат</h2>
+            </div>
+            <div class="messages"></div>
+            <div class="input-container">
+                <input type="text" id="messageInput" placeholder="Введите сообщение...">
+                <button id="sendMessageBtn">Отправить</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/js.js"></script>
+</body>
+</html>

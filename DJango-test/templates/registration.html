@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+<!-- Регистрация -->
+<form id="registrationForm">
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="button" onclick="register()">Зарегистрироваться</button>
+    <p id="registrationMessage"></p>
+</form>
+
+<!-- Авторизация -->
+<form id="loginForm">
+    <label for="loginUsername">Имя пользователя:</label>
+    <input type="text" id="loginUsername" name="loginUsername" required>
+
+    <label for="loginPassword">Пароль:</label>
+    <input type="password" id="loginPassword" name="loginPassword" required>
+
+    <button type="button" onclick="login()">Войти</button>
+    <p id="loginMessage"></p>
+</form>
+
+<script>
+    function register() {
+        var username = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/register', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                location.href="http://127.0.0.1:8080/chat"
+            }
+        };
+
+        var data = {
+            'email': email,
+            'password': password
+        };
+
+        xhr.send(JSON.stringify(data));
+    }
+</script>
+</body>
+</html>
