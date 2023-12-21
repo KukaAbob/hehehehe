@@ -119,12 +119,13 @@ def index():
 
 @app.route('/index')
 def chat():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 @app.route('/logreg', methods=['POST'])
 def logreg():
     
     data = request.get_json()
+    print(data)
     # data2 = json.loads(data)
     # print(data2)
     username = data['signup-email']
@@ -137,19 +138,24 @@ def logreg():
         print("Abob")
         coll.insert_one(data)
         
-    return redirect(url_for('index'))
+    return redirect(url_for('index1'))
     
 
 
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    username = data['signup-email']
-    password = data['signup-password']
+    username = data['login-email']
+    password = data['login-password']
+    if username in coll:
+        return render_template('index.html') #зеркало сделаем там будет уже кредит карта 
+    else:
+        print('error')
+    print(data)
 
     user = coll.find_one({'username': username})
 
-    if user and check_password_hash(user['signup-password'], password):
+    if user and check_password_hash(user['login-password'], password):
         return jsonify({'message': 'Авторизация успешна!'})
     else:
         return jsonify({'error': 'Неверное имя пользователя или пароль!'})

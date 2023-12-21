@@ -7,6 +7,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,300;1,700;1,900&family=Mulish:ital,wght@0,400;0,700;1,300&display=swap');
 
+
+.knopka {
+    border-radius: 10%;
+    height: 25px;
+    width: 50px;
+    background-color: #009933;
+    
+
+}
+
 .body {
     margin: 0;
     padding: 0;
