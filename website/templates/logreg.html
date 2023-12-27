@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login/Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+    <style>
+        *,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	color: #ffeba7;
+	background-color: #1f2029;
+	overflow: hidden;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: radial-gradient(ellipse at bottom, #5df645 0%, black 140%);
+}
+
+.forms-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.forms {
+	display: flex;
+	align-items: flex-start;
+	margin-top: 30px;
+}
+
+.form-wrapper {
+	animation: hideLayer .3s ease-out forwards;
+}
+
+.form-wrapper.is-active {
+	animation: showLayer .3s ease-in forwards;
+}
+
+@keyframes showLayer {
+	50% {
+		z-index: 1;
+	}
+
+	100% {
+		z-index: 1;
+	}
+}
+
+@keyframes hideLayer {
+	0% {
+		z-index: 1;
+	}
+
+	49.999% {
+		z-index: 1;
+	}
+}
+
+.switcher {
+	position: relative;
+	cursor: pointer;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0;
+	text-transform: uppercase;
+	font-family: inherit;
+	font-size: 16px;
+	letter-spacing: .5px;
+	color: #999;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	transform: translateX(0);
+	transition: all .3s ease-out;
+}
+
+.form-wrapper.is-active .switcher-login {
+	color: #fff;
+	transform: translateX(90px);
+}
+
+.form-wrapper.is-active .switcher-signup {
+	color: #fff;
+	transform: translateX(-90px);
+}
+.form {
+	overflow: hidden;
+	min-width: 260px;
+	margin-top: 50px;
+	padding: 30px 25px;
+	border-radius: 5px;
+	transform-origin: top;
+}
+
+.form-login {
+	animation: hideLogin .3s ease-out forwards;
+}
+
+.form-wrapper.is-active .form-login {
+	animation: showLogin .3s ease-in forwards;
+}
+
+@keyframes showLogin {
+	0% {
+		background: #d7e7f1;
+		transform: translate(40%, 10px);
+	}
+
+	50% {
+		transform: translate(0, 0);
+	}
+
+	100% {
+		background-color: #fff;
+		transform: translate(35%, -20px);
+	}
+}
+
+@keyframes hideLogin {
+	0% {
+		background-color: #fff;
+		transform: translate(35%, -20px);
+	}
+
+	50% {
+		transform: translate(0, 0);
+	}
+
+	100% {
+		background: #d7e7f1;
+		transform: translate(40%, 10px);
+	}
+}
+
+.form-signup {
+	animation: hideSignup .3s ease-out forwards;
+}
+
+.form-wrapper.is-active .form-signup {
+	animation: showSignup .3s ease-in forwards;
+}
+
+@keyframes showSignup {
+	0% {
+		background: #d7e7f1;
+		transform: translate(-40%, 10px) scaleY(.8);
+	}
+
+	50% {
+		transform: translate(0, 0) scaleY(.8);
+	}
+
+	100% {
+		background-color: #fff;
+		transform: translate(-35%, -20px) scaleY(1);
+	}
+}
+
+@keyframes hideSignup {
+	0% {
+		background-color: #fff;
+		transform: translate(-35%, -20px) scaleY(1);
+	}
+
+	50% {
+		transform: translate(0, 0) scaleY(.8);
+	}
+
+	100% {
+		background: #d7e7f1;
+		transform: translate(-40%, 10px) scaleY(.8);
+	}
+}
+
+.form fieldset {
+	position: relative;
+	opacity: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	transition: all .3s ease-out;
+}
+
+.form-login fieldset {
+	transform: translateX(-50%);
+}
+
+.form-signup fieldset {
+	transform: translateX(50%);
+}
+
+.form-wrapper.is-active fieldset {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity .4s ease-in, transform .35s ease-in;
+}
+
+.form legend {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+}
+
+.input-block {
+	margin-bottom: 20px;
+}
+
+.input-block label {
+	font-size: 14px;
+	color: #a1b4b4;
+}
+
+.input-block input {
+	display: block;
+	width: 100%;
+	margin-top: 8px;
+	padding-right: 15px;
+	padding-left: 15px;
+	font-size: 16px;
+	line-height: 40px;
+	color: #3b4465;
+	background: #eef9fe;
+	border: 1px solid #cddbef;
+	border-radius: 2px;
+}
+
+.btn {
+	opacity: 0;
+	display: block;
+	min-width: 280px;
+	margin: 30px auto 10px;
+	font-size: 18px;
+	line-height: 40px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease-out;
+	color: #a7e245;
+	background: #fbfdff;
+	box-shadow: inset 0 0 0 2px #a7e245;
+	transform: translateX(30%);
+}
+
+.form-wrapper.is-active .form [type='submit'] {
+	opacity: 1;
+	transform: translateX(0);
+	transition: all .4s ease-in;
+}
+    </style>
+    
+	<section class="forms-section">
+		<div class="forms">
+		  <div class="form-wrapper is-active">
+			<button type="button" class="switcher switcher-login">
+			  Login
+			  <span class="underline"></span>
+			</button>
+			<form class="form form-login" action="/logreg" method="post">
+			  <fieldset>
+				<legend>Please, enter your email and password for login.</legend>
+				<div class="input-block">
+				  <label>Name</label>
+				  <input id="login-email" id='login' name='login' required>
+				</div>
+				<div class="input-block">
+				  <label>Password</label>
+				  <input id="login-password" type="password" id='password' name='password' required>
+				</div>
+			  </fieldset>
+			  <button type="submit" class="btn" >Login</button>
+			</form>
+		  </div>
+		  <div class="form-wrapper">
+			<button type="button" class="switcher switcher-signup">
+			  Sign Up
+			  <span class="underline"></span>
+			</button>
+			<form class="form form-signup">
+			  <fieldset>
+				<legend>Please, enter your email, password and password confirmation for sign up.</legend>
+				<div class="input-block">
+				  <label>Name</label>
+				  <input id="signup-email" required>
+				</div>
+				<div class="input-block">
+				  <label>Password</label>
+				  <input id="signup-password" type="password" required>
+				</div>
+			  </fieldset>
+			  <button type="submit" class="btn" onclick=logreg()>Continue</button>
+			</form>
+		  </div>
+		</div>
+	  </section>
+	  <script>
+       const switchers = [...document.querySelectorAll('.switcher')];
+
+switchers.forEach(item => {
+    item.addEventListener('click', function(event) {
+        if (!event.target.classList.contains('input-block')) {
+            switchers.forEach(item => item.parentElement.classList.remove('is-active'));
+            this.parentElement.classList.add('is-active');
+        }
+    });
+});
+
+
+function logreg() {
+        var username = document.getElementById('signup-email').value;
+        var password = document.getElementById('signup-password').value;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/logreg', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                location.href="http://127.0.0.1:8080/index"
+            }
+        };
+
+        var data = {
+            'signup-email': username,
+            'signup-password': password
+        };
+
+        xhr.send(JSON.stringify(data));
+    }
+
+function login() {
+	var log_username = document.getElementById('login-email').value;
+        var log_password = document.getElementById('login-password').value;
+		var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/reg', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+		if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                location.href="http://127.0.0.1:8080/index2"
+            }
+			var log_data = {
+            'signup-email': log_username,
+            'signup-password': log_password
+        };
+
+        xhr.send(JSON.stringify(log_data));
+    }
+
+
+
+
+var input_name = document.getElementById('login-email').value;
+
+// document.getElementById('login-email').addEventListener('click', function() {
+//       if 
+//       var conditionToCheck = true;
+
+//       if (conditionToCheck) {
+//         // Перенаправление на другой сайт (замените на свой URL)
+//         window.location.href = 'https://www.example.com';
+//       } else {
+//         // Ваш код, который будет выполнен, если условие не выполнено
+//         alert('Условие не выполнено');
+//       }
+//     });
+
+function VisaCard() {
+
+	var cardNumber = document.getElementById('CardNumber').value;
+    var CARDHOLDER = document.getElementById('CardHolder').value;
+    var EXPIRATIONMM= document.getElementById('Date').value;
+    var YY = document.getElementById('years').value;
+    var Cvv = document.getElementById('CVV').value;
+
+	var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/log', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                location.href="http://127.0.0.1:8080/index"
+            }
+        };
+
+}
+
+    </script>
+</body>
+</html>
